@@ -5,12 +5,16 @@ const orderSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  material:{
+  email:{
     type: String,
     required: true
   },
-  size:{
+  address:{
     type: String,
+    required: true
+  },
+  order: {
+    type: Array,
     required: true
   }
 });

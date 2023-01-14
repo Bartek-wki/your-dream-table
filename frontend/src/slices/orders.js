@@ -1,4 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import ordersDataService from '../services/orders.service';
+
+export const createOrder = createAsyncThunk(
+  "orders/create",
+  async (data) => {
+    const res = await ordersDataService.create(data);
+    return res.data;
+  }
+);
 
 export const ordersSlice = createSlice({
   name: 'orders',
@@ -11,6 +20,11 @@ export const ordersSlice = createSlice({
     },
     deleteOrder: (state, action) => {
       return state.filter(order => order.id !== action.payload)
+    }
+  },
+  extraReducers: {
+    [createOrder.fulfilled]: (state, action) => {
+      state.push(action.payload);
     }
   }
 })
