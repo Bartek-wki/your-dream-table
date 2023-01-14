@@ -24,7 +24,7 @@ export const ordersSlice = createSlice({
   },
   extraReducers: {
     [createOrder.fulfilled]: (state, action) => {
-      state.push(action.payload);
+      return []
     }
   }
 })

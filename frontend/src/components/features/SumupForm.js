@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types';
 
 
-const SumupForm = ({orders, name, onChangeName, email, onChangeEmail, address, onChangeAddress, sendOrder}) => {
-  let totalPrice = 0;
-
-  orders.map(order => totalPrice += order.price);
-
+const SumupForm = ({name, onChangeName, email, onChangeEmail, address, onChangeAddress, sendOrder, totalPrice}) => {
   return (
     <>
       <p className="subtitle mb-5">Total: ${totalPrice}</p>
@@ -39,7 +35,6 @@ const SumupForm = ({orders, name, onChangeName, email, onChangeEmail, address, o
 };
 
 SumupForm.propTypes = {
-  orders: PropTypes.array,
   name: PropTypes.string,
   email: PropTypes.string,
   address: PropTypes.string,
@@ -47,6 +42,7 @@ SumupForm.propTypes = {
   onChangeEmail: PropTypes.func,
   onChangeAddress: PropTypes.func,
   sendOrder: PropTypes.func,
+  totalPrice: PropTypes.number,
 };
 
 export default SumupForm;

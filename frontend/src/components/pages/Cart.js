@@ -16,6 +16,9 @@ const Cart = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
+  
+  let totalPrice = 0;
+  orders.map(order => totalPrice += order.price);
 
   const deleteOrderById = (id) => {
     dispatch(deleteOrder(id));
@@ -40,6 +43,7 @@ const Cart = () => {
       name: name,
       email: email,
       address: address,
+      totalPrice: totalPrice,
       order: orders,
     };
 
@@ -62,7 +66,7 @@ const Cart = () => {
           {orders.map(order => <SumupView key={order.id} id={order.id} material={order.material} shape={order.shape} price={order.price} deleteOrderById={deleteOrderById} />)}
         </div>
         <div className="column is-6-tablet is-5-desktop px-5">
-          <SumupForm orders={orders} name={name} onChangeName={onChangeName} email={email} onChangeEmail={onChangeEmail} address={address} onChangeAddress={onChangeAddress} sendOrder={sendOrder} />
+          <SumupForm name={name} onChangeName={onChangeName} email={email} onChangeEmail={onChangeEmail} address={address} onChangeAddress={onChangeAddress} sendOrder={sendOrder} totalPrice={totalPrice} />
         </div>
       </div>
     </section>

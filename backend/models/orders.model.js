@@ -13,6 +13,10 @@ const orderSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  totalPrice: {
+    type: Number,
+    required: true
+  },
   order: {
     type: Array,
     required: true
