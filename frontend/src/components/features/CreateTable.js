@@ -11,7 +11,7 @@ import Plane from '../common/Plane';
 
 extend({ OrbitControls });
 
-const Scene = ({material, shape}) => {
+const Scene = ({material, shape, sumup}) => {
   const {
     camera,
     gl: { domElement }
@@ -32,32 +32,31 @@ const Scene = ({material, shape}) => {
       <TableLeg rotation={[0, 0, 0]} position={[-2.6, 0, 2.6 * tableLength]} material={material} />
       <TableLeg rotation={[0, 0, 0]} position={[-2.6, 0, -2.6 * tableLength]} material={material} />
       <TableTop rotation={[0, 0, 0]} position={[0, 2.6, 0]} material={material} length={tableLength} />
-      <primitive position={[0, 2.7, 0]} scale={[0.1, 0.1, 0.1]} object={gltf.scene} />
+      {!sumup && <primitive position={[0, 2.7, 0]} scale={[0.1, 0.1, 0.1]} object={gltf.scene} />}
       <Plane />
-      <orbitControls
+      {!sumup && <orbitControls
         args={[camera, domElement]}
         minPolarAngle={0}
         maxPolarAngle={Math.PI - Math.PI / 2}
         maxDistance={100}
-      />
+      />}
     </>
   )
 }
 
-function CreateTable({material, shape}) {
+function CreateTable({material, shape, sumup = false}) {
   
   return (
-    <div className='column is-two-thirds canvas-container px-5'>
-      <Canvas shadows camera={{ position: [6, 5, 8], fov: 70}}>
-        <Scene material={material} shape={shape} />
-      </Canvas>      
-    </div>
+    <Canvas shadows camera={{ position: [6, 5, 8], fov: 70}}>
+      <Scene material={material} shape={shape} sumup={sumup} />
+    </Canvas>      
   );
 }
 
 CreateTable.propTypes = {
   material: PropTypes.string,
   shape: PropTypes.string,
+  sumup: PropTypes.bool,
 };
 
 export default CreateTable;

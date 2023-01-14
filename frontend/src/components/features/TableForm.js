@@ -3,11 +3,11 @@ import ShapeInput from "../common/ShapeInput";
 import PropTypes from 'prop-types';
 
 
-const Form = ({material, materialChange, shape, shapeChange, handleSubmit}) => {
+const TableForm = ({material, materialChange, shape, shapeChange, handleSubmit, price}) => {
   return (
-    <div className="column px-5">
+    <>
       <p className="subtitle mb-2">Wooden table</p>
-      <p className="subtitle is-6 mb-3">$199,00</p>
+      <p className="subtitle is-6 mb-3">${price}</p>
       <form onSubmit={handleSubmit}>
         <div className="field">
           <div className="control">
@@ -36,16 +36,17 @@ const Form = ({material, materialChange, shape, shapeChange, handleSubmit}) => {
           </div>
         </div>
       </form>
-    </div>
+    </>
   );
 };
 
-Form.propTypes = {
+TableForm.propTypes = {
   material: PropTypes.string,
   materialChange: PropTypes.func,
   shape: PropTypes.string,
   shapeChange: PropTypes.func,
   handleSubmit: PropTypes.func,
+  price: PropTypes.number,
 };
 
-export default Form;
+export default TableForm;

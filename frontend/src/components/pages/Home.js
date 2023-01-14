@@ -1,10 +1,17 @@
-import Form from "../features/Form";
+import { useDispatch } from 'react-redux';
+import uuid from 'react-uuid';
+
+import TableForm from "../features/TableForm";
 import CreateTable from "../features/CreateTable";
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { addOrder } from "../../slices/orders";
 
 const Home = () => {
   const [material, setMaterial] = useState("Wood01");
   const [shape, setShape] = useState("square");
+  const [price, setPrice] = useState(199);
+  
+  const dispatch = useDispatch();
 
   const materialChange = e => {
     setMaterial(e.target.value);
@@ -16,14 +23,29 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ material: material, shape: shape });
+    dispatch(addOrder({id: uuid(), material: material, shape: shape, price: price }));
   }
+
+  useEffect(() => {
+    shape === "square" ? setPrice(199) : setPrice(250);
+
+  }, [shape])
 
   return (
     <section id="create-your-table">
       <div className="columns">
-        <CreateTable material={material} shape={shape} />
-        <Form material={material} materialChange={materialChange} shape={shape} shapeChange={shapeChange} handleSubmit={handleSubmit} />
+        <div className="column is-two-thirds canvas-container px-5">
+          <CreateTable material={material} shape={shape} />
+        </div>
+        <div className="column px-5">
+          <TableForm material={material}
+            materialChange={materialChange}
+            shape={shape}
+            shapeChange={shapeChange}
+            handleSubmit={handleSubmit}
+            price={price}
+          />          
+        </div>
       </div>
     </section>
   )
