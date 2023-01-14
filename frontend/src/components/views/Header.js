@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 const Header = () => (
-  <header>
+  <header className="mb-5">
     <nav className="navbar is-light" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <NavLink to={'/'} className="navbar-item">

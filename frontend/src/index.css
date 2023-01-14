@@ -28,8 +28,7 @@ input[type=radio]:checked+label>p {
   border: 1.5px solid #F14668;
 }
 
-input[type=radio]+label>img,
-input[type=radio]+label>p {
+input[type=radio]+label>img{
   width: 40px;
   height: 40px;
 }
@@ -38,9 +37,15 @@ input[type=radio]+label>p {
   border: 1px solid #363636;
   text-align: center;
   line-height: 40px;
+  font-weight: 600;
+  padding: 0 5px;
 }
 
 input[type=radio]:checked+label>img {
   transform:
     scale(1.1);
+}
+
+.canvas-container {
+  height: 500px;
 }

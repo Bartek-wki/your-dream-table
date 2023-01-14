@@ -6,7 +6,7 @@ import Footer from './Footer';
 const MainLayout = ({ children }) => (
   <>
     <Header />
-    <div className='container mt-5'>
+    <div className='container mt-5 pt-5'>
       {children}
     </div>
     <Footer />
