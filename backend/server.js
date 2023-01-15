@@ -2,8 +2,6 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import ordersRoutes from "./routes/orders.routes.js";
-
-import sendMail from "./helpers/sendMail.js";
  
 const app = express();
 
@@ -20,23 +18,6 @@ app.use('/api', (req, res) => {
   res.status(404).send({ post: 'Not found...' });
 });
 
-// for test
-const order = [
-  {
-    material: 'Wood01',
-    shape: 'square',
-    price: 199,
-  },
-  {
-    material: 'Wood02',
-    shape: 'square',
-    price: 199
-  }
-]
-
-app.use('/test', (req, res) => {
-  sendMail('bartosz.wilki2023@gmail.com', order);
-});
 
 /* MONGOOSE */
 mongoose.connect('mongodb://localhost:27017/your_dream_table_db',{

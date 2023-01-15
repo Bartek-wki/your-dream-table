@@ -49,7 +49,7 @@ const Cart = () => {
 
     try {
       dispatch(createOrder(sumup));
-      navigate("/");
+      navigate("/confirm");
     } catch (error) {
       console.log(error);
     }
@@ -60,15 +60,24 @@ const Cart = () => {
   };
 
   return (
-    <section id="sumup-order">
-      <div className="columns is-justify-content-center">
-        <div className="column is-6-desktop px-5">
-          {orders.map(order => <SumupView key={order.id} id={order.id} material={order.material} shape={order.shape} price={order.price} deleteOrderById={deleteOrderById} />)}
+    <section id="cart">
+        <div className="columns is-desktop is-justify-content-center">
+          {orders.length > 0 &&
+          <>
+            <div className="column is-11-mobile is-9-tablet mx-auto is-6-desktop px-5">
+              {orders.map(order => <SumupView key={order.id} id={order.id} material={order.material} shape={order.shape} price={order.price} deleteOrderById={deleteOrderById} />)}
+            </div>
+            <div className="column is-11-mobile mx-auto is-9-tablet is-5-desktop px-5">
+              <SumupForm name={name} onChangeName={onChangeName} email={email} onChangeEmail={onChangeEmail} address={address} onChangeAddress={onChangeAddress} sendOrder={sendOrder} totalPrice={totalPrice} />
+            </div>
+          </>
+          }
+          {orders.length === 0 && 
+          <div className='column has-text-centered mt-5'>
+            <img className='px-5' src={`${process.env.PUBLIC_URL}/images/Empty_cart.svg`} alt="Empty cart" />
+          </div>
+          }
         </div>
-        <div className="column is-6-tablet is-5-desktop px-5">
-          <SumupForm name={name} onChangeName={onChangeName} email={email} onChangeEmail={onChangeEmail} address={address} onChangeAddress={onChangeAddress} sendOrder={sendOrder} totalPrice={totalPrice} />
-        </div>
-      </div>
     </section>
   )
 };

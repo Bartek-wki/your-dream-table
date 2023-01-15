@@ -17,7 +17,7 @@ const Scene = ({material, shape, sumup}) => {
     gl: { domElement }
   } = useThree();
 
-  const gltf = useLoader(GLTFLoader, `${process.env.PUBLIC_URL}/models/Strawberry_gltf.gltf`)
+  const gltf = useLoader(GLTFLoader, `${process.env.PUBLIC_URL}/models/Vases.gltf`)
 
   let tableLength;
 
@@ -32,7 +32,7 @@ const Scene = ({material, shape, sumup}) => {
       <TableLeg rotation={[0, 0, 0]} position={[-2.6, 0, 2.6 * tableLength]} material={material} />
       <TableLeg rotation={[0, 0, 0]} position={[-2.6, 0, -2.6 * tableLength]} material={material} />
       <TableTop rotation={[0, 0, 0]} position={[0, 2.6, 0]} material={material} length={tableLength} />
-      {!sumup && <primitive position={[0, 2.7, 0]} scale={[0.1, 0.1, 0.1]} object={gltf.scene} />}
+      {!sumup && <primitive position={[0, 2.7, 0]} scale={[5, 5, 5]} object={gltf.scene} />}
       <Plane />
       {!sumup && <orbitControls
         args={[camera, domElement]}

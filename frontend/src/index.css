@@ -12,6 +12,27 @@
   background-color: #e8e8e8;
 }
 
+.navbar-burger {
+  height: auto;
+}
+
+.navbar-burger span {
+  width: 30px;
+  height: 2px;
+}
+
+.navbar-burger span:nth-child(1) {
+  top: calc(50% - 10px);
+}
+
+.navbar-burger span:nth-child(2) {
+  top: calc(50%);
+}
+
+.navbar-burger span:nth-child(3) {
+  top: calc(50% + 10px);
+}
+
 /* Section create-your-table */
 .input-hidden {
   position: absolute;
@@ -48,4 +69,19 @@ input[type=radio]:checked+label>img {
 
 .canvas-container {
   height: 500px;
+}
+
+/* Section Cart */
+.canvas-sumup-container {
+  max-height: 200px;
+}
+
+@media only screen and (max-width: 500px) {
+.canvas-sumup-container {
+    max-height: 150px;
+  }
+
+.details-mobile {
+  font-size: 14px;
+}
 }
